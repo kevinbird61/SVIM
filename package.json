@@ -1,0 +1,23 @@
+{
+    "name": "SVIM",
+    "main": "app.js",
+    "config":  {
+        "port":3000
+    },
+    "scripts": {
+        "build": "npm install",
+        "start": "node app.js",
+        "all": "npm run build && npm run start"
+    },
+    "license": "GPL-3.0",
+    "repository":{
+        "type": "git",
+        "url": "https://github.com/kevinbird61/SVIM.git"
+    },
+    "dependencies": {
+        "body-parser": "^1.15.2",
+        "express": "^4.6.1",
+        "express-session": "^1.11.3",
+        "ejs": "^2.5.5"
+    }
+}

@@ -1,0 +1,6 @@
+# Ignore key
+certificate.pem
+certrequest.csr
+privatekey.pem
+# Ignore nodemodules
+node_modules
