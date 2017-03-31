@@ -1,8 +1,8 @@
 {
-    "name": "SVIM",
+    "name": "SVIM-DeviceStation",
     "main": "app.js",
     "config":  {
-        "port":3000
+        "port": 4000
     },
     "scripts": {
         "build": "npm install",
@@ -17,7 +17,6 @@
     "dependencies": {
         "body-parser": "^1.15.2",
         "express": "^4.6.1",
-        "express-session": "^1.11.3",
         "ejs": "^2.5.5"
     }
 }
