@@ -6,7 +6,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 // core
-const {DeviceService} = require('./server-core/device');
+const {DeviceStation} = require('./server-core/device');
+const {DBmodules} = require('./server-core/database');
+const {RESTFUL} = require('./server-core/restful_api');
 /* Redirect views path */
 app.set('views',path.join(__dirname,'client-service/views'));
 /* Setting static directory - image use */
@@ -22,7 +24,10 @@ var options = {
     cert: fs.readFileSync('./certificate.pem')
 }
 
-DeviceService.init(app);
+// Modules
+DeviceStation.init(app);
+DBmodules.init(app);
+RESTFUL.init(app);
 
 /* index page */
 app.get('/',function(req,res){

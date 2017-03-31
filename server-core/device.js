@@ -1,4 +1,4 @@
-// module here
+// Device connected information center
 
 // definition here
 class DeviceService {
@@ -11,5 +11,5 @@ class DeviceService {
 }
 
 module.exports = {
-    DeviceService: new DeviceService()
+    DeviceStation: new DeviceService()
 };
