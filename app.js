@@ -1,28 +1,15 @@
 // lib
 const http = require('http');
-const path = require('path');
-const fs = require('fs');
-const express = require('express');
-const bodyParser = require('body-parser');
-const app = express();
+const url = require('url');
+const router = require('./router');
+const port = 8080;
 
-/* Setting static directory - image use */
-app.use(bodyParser.urlencoded({extended: false}));
-app.use(bodyParser.json());
-/* Setting view engine as ejs */
-app.set('view engine','ejs');
+function onRequest(req,res){
+    // router
+    var pathname = url.parse(req.url).pathname;
+    router.parsing(pathname,req,res);
+}
 
-// Modules
+http.createServer(onRequest).listen(process.env.npm_package_config_port);
 
-/* index page */
-app.get('/',function(req,res){
-    console.log('test');
-    res.end('OK');
-});
-
-// Server open
-const server = http.createServer(app);
-
-server.listen(process.env.npm_package_config_port,function(){
-    console.log("[Device Station] listening on port "+process.env.npm_package_config_port);
-});
+console.log("[SVIM] base-station");

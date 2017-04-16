@@ -1,8 +1,8 @@
 {
-    "name": "SVIM-DeviceStation",
+    "name": "SVIM",
     "main": "app.js",
     "config":  {
-        "port": 4000
+        "port":8080
     },
     "scripts": {
         "build": "npm install",
@@ -15,8 +15,5 @@
         "url": "https://github.com/kevinbird61/SVIM.git"
     },
     "dependencies": {
-        "body-parser": "^1.15.2",
-        "express": "^4.6.1",
-        "ejs": "^2.5.5"
     }
 }
