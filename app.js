@@ -2,11 +2,13 @@
 const http = require('http');
 const url = require('url');
 const router = require('./router');
-const port = 8080;
 
 function onRequest(req,res){
     // router
     var pathname = url.parse(req.url).pathname;
+    if(req.method == "POST"){
+        console.log("POST method: "+pathname);
+    }
     router.parsing(pathname,req,res);
 }
 
