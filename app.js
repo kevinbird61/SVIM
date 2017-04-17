@@ -1,5 +1,5 @@
 // lib
-const https = require('https');
+const http = require('http');
 const path = require('path');
 const fs = require('fs');
 const express = require('express');
@@ -18,11 +18,6 @@ app.use(bodyParser.json());
 /* Setting view engine as ejs */
 app.set('view engine','ejs');
 
-/* key */
-var options = {
-    key: fs.readFileSync('./privatekey.pem'),
-    cert: fs.readFileSync('./certificate.pem')
-}
 
 // Modules
 DeviceStation.init(app);
@@ -36,8 +31,8 @@ app.get('/',function(req,res){
 });
 
 // Server open
-const server = https.createServer(options,app);
+const server = http.createServer(app);
 
 server.listen(process.env.npm_package_config_port,function(){
-    console.log("Https server listening on port "+process.env.npm_package_config_port);
+    console.log("Http server listening on port "+process.env.npm_package_config_port);
 });
