@@ -4,3 +4,4 @@ certrequest.csr
 privatekey.pem
 # Ignore nodemodules
 node_modules
+.remote-sync.json

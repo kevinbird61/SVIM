@@ -8,6 +8,7 @@ const app = express();
 // core
 const {DeviceStation} = require('./server-core/device');
 const {AuthService} = require('./server-core/auth');
+const {PERSONService} = require('./server-core/personal.js');
 const {DBmodules} = require('./server-core/database');
 const {RESTFUL} = require('./server-core/restful_api');
 /* Redirect views path */
@@ -18,9 +19,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 /* Setting view engine as ejs */
 app.set('view engine','ejs');
-
+app.use(require('express-session')({ secret: 'svim-server', resave: true, saveUninitialized: true }));
 
 // Modules
+PERSONService.init(app);
 DeviceStation.init(app);
 AuthService.init(app);
 RESTFUL.init(app);

@@ -22,6 +22,7 @@ class AuthService {
             },
             function(accessToken, refreshToken, profile,done){
                 let userdata = profile;
+                console.dir(profile);
                 return done(null,userdata);
             }
         ));
@@ -46,7 +47,7 @@ class AuthService {
         // Login page - facebook
         res.render('login',{title:"Sign in with Facebook",type:"facebook",bgcolor:config.login.fb_bgcolor_Hex});
     }
-    authfb(req,res){
+    authfb(req,res,next){
         // Auth page - facebook
         console.log(req.body.username+";"+req.body.email);
         // Doing authentication
