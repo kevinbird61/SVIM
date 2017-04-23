@@ -7,6 +7,7 @@ const bodyParser = require('body-parser');
 const app = express();
 // core
 const {DeviceStation} = require('./server-core/device');
+const {AuthService} = require('./server-core/auth');
 const {DBmodules} = require('./server-core/database');
 const {RESTFUL} = require('./server-core/restful_api');
 /* Redirect views path */
@@ -21,7 +22,7 @@ app.set('view engine','ejs');
 
 // Modules
 DeviceStation.init(app);
-DBmodules.init(app);
+AuthService.init(app);
 RESTFUL.init(app);
 
 /* index page */

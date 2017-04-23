@@ -18,6 +18,9 @@
         "body-parser": "^1.15.2",
         "express": "^4.6.1",
         "express-session": "^1.11.3",
-        "ejs": "^2.5.5"
+        "ejs": "^2.5.5",
+        "passport": "^0.3.2",
+        "passport-facebook": "^2.1.1",
+        "sequelize": "^3.30.2"
     }
 }

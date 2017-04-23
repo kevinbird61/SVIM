@@ -1,12 +1,10 @@
 // Provide app / web service & information requirement
+const config = require('./config');
 
 // definition here
 class DBmodules {
-    init(app){
-        app.get('/db',this.db);
-    }
-    db(req,res){
-        res.end("Test DB");
+    constructor(){
+        
     }
 }
 
