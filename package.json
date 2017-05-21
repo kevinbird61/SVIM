@@ -15,6 +15,7 @@
         "url": "https://github.com/kevinbird61/SVIM.git"
     },
     "dependencies": {
-        "querystring": "^0.2.0"
+        "querystring": "^0.2.0",
+        "mraa": "^1.7.0"
     }
 }

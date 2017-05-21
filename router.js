@@ -3,6 +3,7 @@ var handler = require('./taskhandler');
 handler["/"] = handler.main;
 handler["/intro"] = handler.intro;
 handler["/getData"] = handler.getData;
+handler["/serial"] = handler.serial;
 
 function parsing(pathname,req,res){
     if(typeof handler[pathname] === 'function'){
