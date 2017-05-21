@@ -27,7 +27,7 @@ console.log("[SVIM] base-station");
 console.log("Ready to get the data from the MCU!");
 while(1){
     if(uart.dataAvailable(2000)){
-        var judge - uart.readStr(1024);
+        var judge = uart.readStr(1024);
         if(judge != "#"){
             total = total + judge;
         }

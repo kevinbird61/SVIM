@@ -73,6 +73,5 @@ function delivery(rawdata){
 module.exports = {
     main: main,
     intro: intro,
-    getData: getData,
-    serial: serial
+    getData: getData
 }
