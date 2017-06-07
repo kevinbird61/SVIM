@@ -13,40 +13,31 @@ var strline = "";
 console.log("Ready to get the data from the MCU!");
 
 function read(){
-while(1){
-    if(uart.dataAvailable(2000)){
-        var judge = uart.readStr(1024);
-        if(judge != "#"){
-            strline = strline + judge;
+    // Read the input from device
+    while(1){
+        if(uart.dataAvailable(2000)){
+            var judge = uart.readStr(1024);
+            if(judge != "#"){
+                strline = strline + judge;
+            }
+            else{
+                console.log(strline);
+    			break;
+    		}
+            // process.stdout.write(uart.readStr(1024));
         }
-        else{
-            console.log(strline);
-            // TODO: Using sender to deliver the message which collect from MCU
-            /*sender.getSync('UIDD',strline,function(err,msg){
-                if(err)
-                    console.log(msg);
-                else{
-                    console.log("Successfully deliver message to server.");
-					uart.writeStr("OK");
-					strline = "";
-                }
-            });*/
-			break;
-		}
-        // process.stdout.write(uart.readStr(1024));
     }
+    // FIXME : change uuid to true uidd
+    sender.getSync('UUID',strline,function(err,msg){
+        if(err)
+            console.log(msg);
+        else{
+            console.log("Successfully deliver message to server.");
+			uart.writeStr("OK");
+			strline = "";
+        }
+    });
 }
 
-            sender.getSync('UIDD',strline,function(err,msg){
-                if(err)
-                    console.log(msg);
-                else{
-                    console.log("Successfully deliver message to server.");
-					uart.writeStr("OK");
-					strline = "";
-                }
-            });
-
-}
-
+// Continuous reading 
 setInterval(read,3000);
