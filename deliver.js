@@ -34,6 +34,7 @@ function getSync(id,rawdata,callback){
 
 	http_req.on('error',function(e){
 		console.error('Problem with request: ' + e.message);
+		callback(1,"Proble with request: " + e.message);
 	});
 
 	http_req.write(obj);
