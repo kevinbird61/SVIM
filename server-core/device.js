@@ -3,13 +3,15 @@
 // definition here
 class DeviceService {
     init(app){
-        app.get('/update',this.update);
+        app.post('/data_sync',this.data_sync);
     }
-    update(req,res){
-        res.end("Test Update");
+    data_sync(req,res){
+        console.log("Get ID:" + req.body.id );
+        console.log("Get sync_data:" + req.body.sync_data);
+        res.end("OK");
     }
 }
 
 module.exports = {
-    DeviceStation: new DeviceService()
+    DeviceService: new DeviceService()
 };
