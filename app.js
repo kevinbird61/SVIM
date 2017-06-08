@@ -29,8 +29,7 @@ RESTFUL.init(app);
 
 /* index page */
 app.get('/',function(req,res){
-    console.log('test');
-    res.end('OK');
+    res.end('This is SVIM-server,please using /docs to check out the restful_api of our SVIM-server.');
 });
 
 // Server open
