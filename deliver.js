@@ -2,9 +2,8 @@ const qs = require('querystring');
 const http = require('http');
 
 // Deliver code
-function getSync(id,rawdata,callback){
+function getSync(rawdata,callback){
 	const obj = qs.stringify({
-		'id': "UUID",
 		'sync_data': rawdata
 	});
 
