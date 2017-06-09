@@ -1,4 +1,6 @@
 // Provide app / web service & information requirement
+const jsfs = require('jsonfile');
+const path = require('path');
 
 // definition here
 class RESTFUL_API {
@@ -7,7 +9,11 @@ class RESTFUL_API {
         app.post('/restful_api',this.restful);
     }
     docs(req,res){
-        res.end("Working out the document.");
+        var api = jsfs.readFileSync(path.join(__dirname,'restful','api.json'));
+        res.render('docs',{
+            title: "SVIM - restful api",
+            api: api
+        });
     }
     restful(req,res){
         console.log('Server receive:')

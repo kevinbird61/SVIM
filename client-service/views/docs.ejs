@@ -6,13 +6,59 @@
 </head>
 <header>
     <!-- Navbar goes here -->
-    <% include ../elements/navbar_template %>
+
 </header>
 <body>
-    <!-- Landing page - Carousel -->
-    <% include ../elements/landing %>
-    <!-- Debug : show the raw ranking of article -->
-    <br>
-    <% include ../elements/index_hotest %>
+<div class="container">
+    <!-- Purpose -->
+    <h2> SVIM-Server RESTFUL API 使用介紹 </h2>
+    <p> <%= api.version %> </p>
+    <!-- User part -->
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-triangle-right"></span> 使用者部分
+            </div>
+            <div class="panel-body">
+                <% for(var index in api.user){ %>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.user[index].usage %> </strong></span>
+                    <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.user[index].url %>" readonly="true">
+                </div>
+                <br>
+                <ol>
+                    <li> Error response : <kbd><%= api.user[index].error %></kbd> </li>
+                    <li> Success response : <kbd><%= api.user[index].success %></kbd> </li>
+                </ol>
+                <hr>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <hr>
+    <!-- Data part -->
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-triangle-right"></span> 資料同步
+            </div>
+            <div class="panel-body">
+                <% for(var index in api.data){ %>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.data[index].usage %> </strong></span>
+                    <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.data[index].url %>" readonly="true">
+                </div>
+                <br>
+                <ol>
+                    <li> Error response : <kbd><%= api.data[index].error %></kbd> </li>
+                    <li> Success response : <kbd><%= api.data[index].success %></kbd> </li>
+                </ol>
+                <hr>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+</div> <!-- Container End -->
 </body>
 </html>

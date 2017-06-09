@@ -15,6 +15,7 @@ const {RESTFUL} = require('./server-core/restful_api');
 app.set('views',path.join(__dirname,'client-service/views'));
 /* Setting static directory - image use */
 app.use(express.static(path.join(__dirname,'client-service/elements')));
+app.use(express.static(path.join(__dirname,'client-service/img')));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 /* Setting view engine as ejs */

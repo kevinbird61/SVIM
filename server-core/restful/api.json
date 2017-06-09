@@ -1,0 +1,26 @@
+{
+    "version": "v0.0.1",
+    "user":[
+        {
+            "usage": "儲存新的使用者",
+            "url": "http://<server_url>/register?userID=...&deviceID=...",
+            "error": "Error Add",
+            "success": "OK"
+        },
+        {
+            "usage": "更新原有使用者",
+            "url": "http://<server_url>/update_user?userID=...&deviceID=...&dailyCAL=...&dailyDIST=...&petTYPE=...&petGRADE=...",
+            "error": "Error Update",
+            "success": "OK"
+        },
+        {
+            "usage": "取得該名使用者資料",
+            "url": "http://<server_url>/get_user?userID=...&deviceID=...",
+            "error": "Error Get",
+            "success": "<json string>"
+        }
+    ],
+    "data":[
+
+    ]
+}
