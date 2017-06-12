@@ -28,6 +28,7 @@
                 <br>
                 <ol>
                     <li> Error response : <kbd><%= api.user[index].error %></kbd> </li>
+                    <hr>
                     <li> Success response : <kbd><%= api.user[index].success %></kbd> </li>
                 </ol>
                 <hr>
@@ -51,7 +52,31 @@
                 <br>
                 <ol>
                     <li> Error response : <kbd><%= api.data[index].error %></kbd> </li>
+                    <hr>
                     <li> Success response : <kbd><%= api.data[index].success %></kbd> </li>
+                </ol>
+                <hr>
+                <% } %>
+            </div>
+        </div>
+    </div>
+    <!-- Debug part -->
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-triangle-right"></span> Debug/測試
+            </div>
+            <div class="panel-body">
+                <% for(var index in api.debug){ %>
+                <div class="input-group">
+                    <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.debug[index].usage %> </strong></span>
+                    <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.debug[index].url %>" readonly="true">
+                </div>
+                <br>
+                <ol>
+                    <li> Error response : <kbd><%= api.debug[index].error %></kbd> </li>
+                    <hr>
+                    <li> Success response : <kbd><%= api.debug[index].success %></kbd> </li>
                 </ol>
                 <hr>
                 <% } %>

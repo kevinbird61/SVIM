@@ -7,6 +7,9 @@ class PERSONService {
         app.get('/register',this.register);
         app.get('/update_user',this.update_user);
         app.get('/get_user',this.get_user);
+        // fetch profile
+        app.get('/get_profile',this.get_profile);
+        app.get('/get_health',this.get_health);
         // Test (OAuth)
         app.get('/fblogin',this.fblogin);
     }
@@ -16,11 +19,7 @@ class PERSONService {
         console.log("Get data : "+ userName + "; " + deviceID);
         // store into database
         DBmodules.add_user(userName,deviceID, (err,msg) => {
-            if(err)
-                res.end("Error Add");
-            else {
-                res.end("OK");
-            }
+            res.end(JSON.stringify(msg));
         });
     }
     update_user(req,res){
@@ -33,11 +32,7 @@ class PERSONService {
         let petTYPE = req.query.petTYPE;
         let petGRADE = req.query.petGRADE;
         DBmodules.update_user(userName,deviceID,dailyCAL,dailyDIST,petTYPE,petGRADE, (err,msg) => {
-            if(err)
-                res.end("Error Update");
-            else {
-                res.end("OK");
-            }
+            res.end(JSON.stringify(msg));
         });
     }
     get_user(req,res){
@@ -46,12 +41,25 @@ class PERSONService {
         let userName = req.query.userID;
         let deviceID = req.query.deviceID;
         DBmodules.check_user(userName,deviceID, (err,msg_data) => {
-            if(err)
-                res.end("Error Get");
-            else{
-                res.end(JSON.stringify(msg_data));
-            }
+            res.end(JSON.stringify(msg_data));
         })
+    }
+    get_profile(req,res){
+        // get user profile
+        console.log("Fetch user profile");
+        let userid = req.query.userID;
+        DBmodules.get_profile(userid, (err,msg_data) => {
+            res.end(JSON.stringify(msg_data));
+        });
+    }
+    get_health(req,res){
+        // get user health info
+        console.log("Fetch user health info!");
+        let userid = req.query.userID;
+        let userw = req.query.userW;
+        DBmodules.get_health(userid,parseInt(userw),(err,msg_data) => {
+            res.end(JSON.stringify(msg_data));
+        });
     }
     fblogin(req,res){
         res.end("FB login OK!");

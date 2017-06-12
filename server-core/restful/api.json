@@ -4,23 +4,43 @@
         {
             "usage": "儲存新的使用者",
             "url": "http://<server_url>/register?userID=...&deviceID=...",
-            "error": "Error Add",
-            "success": "OK"
+            "error": "{\"result\":\"Duplicated\"} , {\"result\":\"Error Add\"}",
+            "success": "{\"result\":\"Passed\"}"
         },
         {
             "usage": "更新原有使用者",
             "url": "http://<server_url>/update_user?userID=...&deviceID=...&dailyCAL=...&dailyDIST=...&petTYPE=...&petGRADE=...",
-            "error": "Error Update",
-            "success": "OK"
+            "error": "{\"result\":\"Error Update\"}",
+            "success": "{\"result\":\"Passed\"}"
         },
         {
-            "usage": "取得該名使用者資料",
+            "usage": "取得該名使用者用戶資料",
             "url": "http://<server_url>/get_user?userID=...&deviceID=...",
-            "error": "Error Get",
-            "success": "<json string>"
+            "error": "{\"result\":\"Error Get\"}",
+            "success": "{\"_id\":\"...\",\"userID\":\"...\",\"deviceID\":\"...\",\"dailyDIST\":\"...\",\"dailyCAL\":\"...\",\"petTYPE\":\"...\",\"petGRADE\":\"...\"}"
+        },
+        {
+            "usage": "取得該名使用者活動資料",
+            "url": "http://<server_url>/get_profile?userID=...",
+            "error": "{\"result\":\"Error GetP\"}",
+            "success": "{\"name\":\"...\",\"total_dist\":\"...\",\"avg_speed\":\"...\",\"total_time\":\"...\"}"
+        },
+        {
+            "usage": "取得該名使用者健康資料",
+            "url": "http://<server_url>/get_health?userID=...&userW=...",
+            "error": "{\"result\":\"Error GetH\"}",
+            "success": "{\"name\":\"...\",\"total_dist\":\"...\",\"avg_speed\":\"...\",\"total_time\":\"...\",\"total_cal\":\"...\"}"
         }
     ],
     "data":[
 
+    ],
+    "debug":[
+        {
+            "usage": "送入使用者假測資",
+            "url": "http://<server_url>/fake?id=...&dist=...",
+            "error": "{\"result\":\"Error Fake\"}",
+            "success": "{\"result\":\"Passed\"}"
+        }
     ]
 }

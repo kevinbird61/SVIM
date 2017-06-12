@@ -12,5 +12,11 @@ module.exports = {
             "successUrl": "http://140.116.245.247:3000/fblogin",
             "failureUrl": "http://140.116.245.247:3000/error?type=login"
         }
+    },
+    "data":{
+        "sampling_slot": 3,
+        "cal_per_sec": [
+            0,0,0,0,166,190,232,264,290,319,350
+        ]
     }
 }
