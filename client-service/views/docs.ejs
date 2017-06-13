@@ -22,14 +22,41 @@
             <div class="panel-body">
                 <% for(var index in api.user){ %>
                 <div class="input-group">
+					<span class="input-group-btn">
+					<% if(api.user[index].method == "GET"){ %>
+						<button class="btn btn-success" type="button"><%= api.user[index].method %></button>
+					<% }else if(api.user[index].method == "POST"){ %>
+						<button class="btn btn-info" type="button"><%= api.user[index].method %></button>
+					<% } %>
+					</span>
                     <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.user[index].usage %> </strong></span>
                     <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.user[index].url %>" readonly="true">
                 </div>
                 <br>
                 <ol>
-                    <li> Error response : <kbd><%= api.user[index].error %></kbd> </li>
+                    <ul> Error response : <kbd><%= api.user[index].error %></kbd> </ul>
                     <hr>
-                    <li> Success response : <kbd><%= api.user[index].success %></kbd> </li>
+                    <ul> Success response : <kbd><%= api.user[index].success %></kbd> </ul>
+					<% if(api.user[index].method == "POST"){ %>
+					<hr>
+                    <ul> Parameters/Variables : </ul>
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>Parameter Name</th>
+								<th>Parameter Type</th>
+							</tr>
+							</thead>
+						<tbody>
+						<% for(var v_index in api.user[index].param){ %>
+						<tr>
+						  <td><%= api.user[index].param[v_index].param_name %></td>
+						  <td><%= api.user[index].param[v_index].param_type %></td>
+						</tr>
+						<% } %>
+						</tbody>
+						</table>
+					<% } %>
                 </ol>
                 <hr>
                 <% } %>
@@ -46,14 +73,93 @@
             <div class="panel-body">
                 <% for(var index in api.data){ %>
                 <div class="input-group">
+					<span class="input-group-btn">
+					<% if(api.data[index].method == "GET"){ %>
+						<button class="btn btn-success" type="button"><%= api.data[index].method %></button>
+					<% }else if(api.data[index].method == "POST"){ %>
+						<button class="btn btn-info" type="button"><%= api.data[index].method %></button>
+					<% } %>
+					</span>
                     <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.data[index].usage %> </strong></span>
                     <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.data[index].url %>" readonly="true">
                 </div>
                 <br>
                 <ol>
-                    <li> Error response : <kbd><%= api.data[index].error %></kbd> </li>
+                    <ul> Error response : <kbd><%= api.data[index].error %></kbd> </ul>
                     <hr>
-                    <li> Success response : <kbd><%= api.data[index].success %></kbd> </li>
+                    <ul> Success response : <kbd><%= api.data[index].success %></kbd> </ul>
+					<% if(api.data[index].method == "POST"){ %>
+					<hr>
+					<ul> Parameters/Variables : </ul>
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>Parameter Name</th>
+								<th>Parameter Type</th>
+							</tr>
+							</thead>
+						<tbody>
+						<% for(var v_index in api.data[index].param){ %>
+						<tr>
+						  <td><%= api.data[index].param[v_index].param_name %></td>
+						  <td><%= api.data[index].param[v_index].param_type %></td>
+						</tr>
+						<% } %>
+						</tbody>
+						</table>
+					<% } %>
+                </ol>
+                <hr>
+                <% } %>
+            </div>
+        </div>
+    </div>
+	<!-- Pet part -->
+    <div class="panel-group">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-triangle-right"></span> 寵物系統
+            </div>
+            <div class="panel-body">
+                <% for(var index in api.pet){ %>
+                <div class="input-group">
+					<span class="input-group-btn">
+					<% if(api.pet[index].method == "GET"){ %>
+						<button class="btn btn-success" type="button"><%= api.pet[index].method %></button>
+					<% }else if(api.pet[index].method == "POST"){ %>
+						<button class="btn btn-info" type="button"><%= api.pet[index].method %></button>
+					<% } %>
+					</span>
+                    <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.pet[index].usage %> </strong></span>
+                    <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.pet[index].url %>" readonly="true">
+                </div>
+                <br>
+                <ol>
+                    <ul> Error response : <kbd><%= api.pet[index].error %></kbd> </ul>
+                    <hr>
+                    <ul> Success response : <kbd><%= api.pet[index].success %></kbd> </ul>
+					<% if(api.pet[index].method == "POST"){ %>
+					<hr>
+                    <ul> Parameters/Variables : </ul>
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>#</th>
+								<th>Parameter Name</th>
+								<th>Parameter Type</th>
+							</tr>
+							</thead>
+						<tbody>
+						<% for(var v_index in api.pet[index].param){ %>
+						<tr>
+						  <th scope="row"><%= v_index %></th>
+						  <td><%= api.pet[index].param[v_index].param_name %></td>
+						  <td><%= api.pet[index].param[v_index].param_type %></td>
+						</tr>
+						<% } %>
+						</tbody>
+						</table>
+					<% } %>
                 </ol>
                 <hr>
                 <% } %>
@@ -69,14 +175,43 @@
             <div class="panel-body">
                 <% for(var index in api.debug){ %>
                 <div class="input-group">
+					<span class="input-group-btn">
+					<% if(api.debug[index].method == "GET"){ %>
+						<button class="btn btn-success" type="button"><%= api.debug[index].method %></button>
+					<% }else if(api.debug[index].method == "POST"){ %>
+						<button class="btn btn-info" type="button"><%= api.debug[index].method %></button>
+					<% } %>
+					</span>
                     <span class="input-group-addon"><i class="fa fa-code" aria-hidden="true"></i><strong> <%= api.debug[index].usage %> </strong></span>
                     <input type="text" class="form-control" placeholder="user-add" aria-describedby="basic-addon1" value="<%= api.debug[index].url %>" readonly="true">
                 </div>
                 <br>
                 <ol>
-                    <li> Error response : <kbd><%= api.debug[index].error %></kbd> </li>
+                    <ul> Error response : <kbd><%= api.debug[index].error %></kbd> </ul>
                     <hr>
-                    <li> Success response : <kbd><%= api.debug[index].success %></kbd> </li>
+                    <ul> Success response : <kbd><%= api.debug[index].success %></kbd> </ul>
+					<% if(api.debug[index].method == "POST"){ %>
+					<hr>
+                    <ul> Parameters/Variables : </ul>
+						<table class="table table-striped">
+							<thead>
+							<tr>
+								<th>#</th>
+								<th>Parameter Name</th>
+								<th>Parameter Type</th>
+							</tr>
+							</thead>
+						<tbody>
+						<% for(var v_index in api.debug[index].param){ %>
+						<tr>
+						  <th scope="row"><%= v_index %></th>
+						  <td><%= api.debug[index].param[v_index].param_name %></td>
+						  <td><%= api.debug[index].param[v_index].param_type %></td>
+						</tr>
+						<% } %>
+						</tbody>
+						</table>
+					<% } %>
                 </ol>
                 <hr>
                 <% } %>

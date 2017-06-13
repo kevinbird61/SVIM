@@ -2,42 +2,76 @@
     "version": "v0.0.1",
     "user":[
         {
-            "usage": "儲存新的使用者",
+            "usage": "註冊新的使用者",
+			"method": "GET",
             "url": "http://<server_url>/register?userID=...&deviceID=...",
             "error": "{\"result\":\"Duplicated\"} , {\"result\":\"Error Add\"}",
             "success": "{\"result\":\"Passed\"}"
         },
         {
             "usage": "更新原有使用者",
-            "url": "http://<server_url>/update_user?userID=...&deviceID=...&dailyCAL=...&dailyDIST=...&petTYPE=...&petGRADE=...",
+			"method": "GET",
+            "url": "http://<server_url>/update_user?userID=...&deviceID=...&dailyCAL=...&dailyDIST=...&petNAME=...&petTYPE=...&petGRADE=...&userW=...",
             "error": "{\"result\":\"Error Update\"}",
             "success": "{\"result\":\"Passed\"}"
         },
         {
             "usage": "取得該名使用者用戶資料",
+			"method": "GET",
             "url": "http://<server_url>/get_user?userID=...&deviceID=...",
             "error": "{\"result\":\"Error Get\"}",
-            "success": "{\"_id\":\"...\",\"userID\":\"...\",\"deviceID\":\"...\",\"dailyDIST\":\"...\",\"dailyCAL\":\"...\",\"petTYPE\":\"...\",\"petGRADE\":\"...\"}"
+            "success": "{\"_id\":\"...\",\"userID\":\"...\",\"deviceID\":\"...\",\"dailyDIST\":\"...\",\"dailyCAL\":\"...\",\"petNAME\":\"...\",\"petTYPE\":\"...\",\"petGRADE\":\"...\",\"userWEIGHT\":\"...\"}"
         },
         {
             "usage": "取得該名使用者活動資料",
+			"method": "GET",
             "url": "http://<server_url>/get_profile?userID=...",
             "error": "{\"result\":\"Error GetP\"}",
             "success": "{\"name\":\"...\",\"total_dist\":\"...\",\"avg_speed\":\"...\",\"total_time\":\"...\"}"
         },
         {
             "usage": "取得該名使用者健康資料",
+			"method": "GET",
             "url": "http://<server_url>/get_health?userID=...&userW=...",
             "error": "{\"result\":\"Error GetH\"}",
             "success": "{\"name\":\"...\",\"total_dist\":\"...\",\"avg_speed\":\"...\",\"total_time\":\"...\",\"total_cal\":\"...\"}"
+        },
+		{
+            "usage": "取得該名使用者寵物資料",
+			"method": "GET",
+            "url": "http://<server_url>/get_pet?userID=...",
+            "error": "{\"result\":\"Error GetPET\"}",
+            "success": "{\"petName\":\"...\",\"petLatin\":\"...\",\"petIntro\":\"...\",\"petPSN\":\"...\",\"petSize\":\"...\"}"
         }
     ],
     "data":[
-
+		{
+            "usage": "從 device 上面傳送資料給 server",
+			"method": "POST",
+            "url": "http://<server_url>/sync_data",
+            "error": "{\"result\":\"Error Sync\"}",
+            "success": "{\"result\":\"Passed\"}",
+			"param": [
+				{
+					"param_name": "sync_data",
+					"param_type": "String"
+				}
+			]
+        }
+    ],
+	"pet":[
+		{
+            "usage": "查詢對應寵物類型",
+			"method": "GET",
+            "url": "http://<server_url>/pet?type=...&grade=...",
+            "error": "{\"result\":\"Error PetQuery\"}",
+            "success": "{\"petLatin\":\"...\",\"petIntro\":\"...\",\"petPSN\":\"...\",\"petSize\":\"...\"}"
+        }
     ],
     "debug":[
         {
             "usage": "送入使用者假測資",
+			"method": "GET",
             "url": "http://<server_url>/fake?id=...&dist=...",
             "error": "{\"result\":\"Error Fake\"}",
             "success": "{\"result\":\"Passed\"}"

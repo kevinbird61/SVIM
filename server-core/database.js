@@ -15,6 +15,8 @@ class DBmodules {
             deviceID: String,
             dailyDIST: Number,
             dailyCAL: Number,
+			userWEIGHT: Number,
+			petNAME: String,
             petTYPE: String,
             petGRADE: Number
         });
@@ -30,7 +32,7 @@ class DBmodules {
         this.dist_m = mongoose.model('dist_m',this.distSchema);
     }
     // Add distance data
-    push_device_data(deviceid,dist,date,callback){
+    push_device_data(deviceid,dist,bth,date,callback){
         var dist_model = this.dist_m;
         let new_dist = new dist_model({deviceID: deviceid,distPIECE: dist,date: date});
         new_dist.save(function(err,new_dist){
@@ -44,10 +46,46 @@ class DBmodules {
             }
         });
     }
+	// Using to get the pet information of user
+	get_pet(userid,callback){
+		this.user_m.findOne({userID: userid},'petNAME petTYPE petGRADE',function(err,userpet){
+			if(err){
+				console.log("[Get Pet] User-findOne error.");
+                callback(1,{
+                    result: "Error GetPET"
+                });
+			}
+			else{
+				if(userpet == null){
+					// Not found this user => error
+                    console.log("Not found this user.");
+                    callback(1,{
+                        result: "Error GetPET"
+                    }); 
+				}
+				else{
+					// Exist ! 
+					console.log(`${userid}'s pet name is ${userpet.petNAME}`);
+					console.log(JSON.stringify(userpet));
+					// Find target pet 
+					console.log(`Type of pet: ${config.pet_sys[userpet.petTYPE].name}`);
+					console.log(`Grade of pet: ${config.pet_sys[userpet.petTYPE].grade[userpet.petGRADE]}`);
+					// Return 
+					callback(0,{
+						petName: userpet.petNAME,
+						petLatin: config.pet_sys[userpet.petTYPE].name,
+						petIntro: config.pet_sys[userpet.petTYPE].intro,
+						petPSN: config.pet_sys[userpet.petTYPE].personality,
+						petSize: config.pet_sys[userpet.petTYPE].grade[userpet.petGRADE]
+					});
+				}
+			}
+		});
+	}
     // Using to get the information of target user
     get_profile(userid,callback){
         var self = this;
-        this.user_m.findOne({userID: userid},'userID deviceID dailyCAL dailyDIST petTYPE petGRADE',function(err,user){
+        this.user_m.findOne({userID: userid},'userID deviceID dailyCAL dailyDIST petNAME petTYPE petGRADE userWEIGHT',function(err,user){
             if(err){
                 console.log("[Get Profile] User-findOne error.");
                 // callback(1,"[Check user] User-findOne error.");
@@ -100,7 +138,7 @@ class DBmodules {
     }
     get_health(userid,user_weight,callback){
         var self = this;
-        this.user_m.findOne({userID: userid},'userID deviceID dailyCAL dailyDIST petTYPE petGRADE',function(err,user){
+        this.user_m.findOne({userID: userid},'userID deviceID dailyCAL dailyDIST petNAME petTYPE petGRADE userWEIGHT',function(err,user){
             if(err){
                 console.log("[Check user] User-findOne error.");
                 // callback(1,"[Check user] User-findOne error.");
@@ -165,7 +203,7 @@ class DBmodules {
                 });
             }else{
                 if(user == null){
-                    let newuser = new user_model({userID: userid,deviceID: deviceid,dailyDIST: 0,dailyCAL: 0,petTYPE: null,petGRADE: 0});
+                    let newuser = new user_model({userID: userid,deviceID: deviceid,dailyDIST: 0,dailyCAL: 0,petNAME: null,petTYPE: null,petGRADE: 0,userWEIGHT: 0});
                     newuser.save(function(err,newuser){
                         if(err){
                             console.log("Error with new user save: " + err);
@@ -193,7 +231,7 @@ class DBmodules {
     // Using to check available user
     check_user(userid,deviceid,callback){
         var user_model = this.user_m;
-        this.user_m.findOne({deviceID: deviceid},'userID deviceID dailyCAL dailyDIST petTYPE petGRADE',function(err,user){
+        this.user_m.findOne({deviceID: deviceid},'userID deviceID dailyCAL dailyDIST petNAME petTYPE petGRADE userWEIGHT',function(err,user){
             if(err){
                 console.log("[Check user] User-findOne error.");
                 // callback(1,"[Check user] User-findOne error.");
@@ -219,9 +257,9 @@ class DBmodules {
         });
     }
     // Update user
-    update_user(userid,deviceid,dailycal,dailydist,pettype,petgrade,callback){
+    update_user(userid,deviceid,dailycal,dailydist,petname,pettype,petgrade,userweight,callback){
         var user_model = this.user_m;
-        this.user_m.findOne({userID: userid,deviceID: deviceid},'userID deviceID dailyCAL dailyDIST petTYPE petGRADE',function(err,user){
+        this.user_m.findOne({userID: userid,deviceID: deviceid},'userID deviceID dailyCAL dailyDIST petNAME petTYPE petGRADE userWEIGHT',function(err,user){
             if(err){
                 console.log("[Update user] User-findOne error");
                 callback(1,{
@@ -240,8 +278,10 @@ class DBmodules {
                     // exist ! return user
                     user.dailyCAL = dailycal;
                     user.dailyDIST = dailydist;
+					user.petNAME = petname;
                     user.petTYPE = pettype;
                     user.petGRADE = petgrade;
+					user.userWEIGHT = userweight;
                     // save the new user
                     user.save(function(err,user){
                         if(err){
