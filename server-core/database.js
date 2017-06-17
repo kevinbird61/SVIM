@@ -117,7 +117,8 @@ class DBmodules {
                             var time_stamp = 0;
                             var time_slot = config.data.sampling_slot; // treat as second
                             for(var index in obj_array){
-                                total_dist+=obj_array[index].distPIECE;
+                                // total_dist+=obj_array[index].distPIECE;
+								total_dist+= obj_array[index].distPIECE <=0 ? (-obj_array[index].distPIECE) : obj_array[index].distPIECE;
                                 time_stamp++;
                             }
                             console.log(`Total distance of ${user.userID} is ${total_dist}`);
@@ -171,7 +172,8 @@ class DBmodules {
                             var time_slot = config.data.sampling_slot; // treat as second
                             var cal_per_sec = config.data.cal_per_sec[Math.floor(user_weight/10)]; // get the current weight specific cal consume volume
                             for(var index in obj_array){
-                                total_dist+=obj_array[index].distPIECE;
+                                // total_dist+=obj_array[index].distPIECE;
+								total_dist+= obj_array[index].distPIECE <=0 ? (-obj_array[index].distPIECE) : obj_array[index].distPIECE;
                                 time_stamp++;
                             }
                             console.log(`Total distance of ${user.userID} is ${total_dist}`);
@@ -203,7 +205,7 @@ class DBmodules {
                 });
             }else{
                 if(user == null){
-                    let newuser = new user_model({userID: userid,deviceID: deviceid,dailyDIST: 0,dailyCAL: 0,petNAME: null,petTYPE: null,petGRADE: 0,userWEIGHT: 0});
+                    let newuser = new user_model({userID: userid,deviceID: deviceid,dailyDIST: 0,dailyCAL: 0,petNAME: null,petTYPE: 0,petGRADE: 0,userWEIGHT: 0});
                     newuser.save(function(err,newuser){
                         if(err){
                             console.log("Error with new user save: " + err);
